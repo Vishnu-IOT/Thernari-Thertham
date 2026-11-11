@@ -1,0 +1,305 @@
+/* =========================================================
+   INNER-PAGE HERO WITH PHOTO BACKGROUND (History, Festivals)
+   + SLOGAN BAND directly under every inner-page hero
+   ========================================================= */
+
+/* ---------- hero with a full-bleed background photo (same look as Home) ---------- */
+.page-hero.has-bg {
+  isolation: isolate;
+  background: var(--night);
+  padding: clamp(2.4rem, 6vw, 4.4rem) 0 clamp(2.6rem, 6vw, 4.4rem);
+  min-height: clamp(300px, 48svh, 470px);
+  display: flex;
+  align-items: center;
+}
+.page-hero.has-bg .page-hero-inner {
+  width: min(1180px, 100% - 2.5rem);
+  grid-template-columns: 1fr;
+}
+.page-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 40%;
+  transform: scale(1.06);
+  animation: heroBg 22s ease-in-out infinite alternate;
+}
+.page-hero-veil {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(21, 7, 9, 0.93) 0%,
+      rgba(40, 10, 20, 0.78) 42%,
+      rgba(63, 11, 21, 0.4) 100%
+    ),
+    linear-gradient(0deg, var(--night) 0%, transparent 26%);
+}
+/* .page-hero.has-bg .page-hero-copy {
+  max-width: 40rem;
+} */
+
+@media (max-width: 760px) {
+  .page-hero.has-bg {
+    min-height: 0;
+    text-align: center;
+  }
+  .page-hero.has-bg .page-hero-copy {
+    margin-inline: auto;
+  }
+  .page-hero.has-bg .page-hero-sub {
+    margin-inline: auto;
+  }
+  .page-hero-veil {
+    background: linear-gradient(
+      180deg,
+      rgba(21, 7, 9, 0.7) 0%,
+      rgba(40, 10, 20, 0.86) 60%,
+      var(--night) 100%
+    );
+  }
+}
+
+/* No gap between hero and slogan: the hero's bottom padding is trimmed too */
+.page-hero {
+  margin-bottom: 0;
+  padding-bottom: clamp(1.6rem, 3.5vw, 2.4rem);
+}
+.page-hero.has-bg {
+  padding-bottom: clamp(2rem, 4.5vw, 3rem);
+}
+
+/* ---------- slogan band ---------- */
+.slogan {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin: 0;
+  text-align: center;
+  /* padding: clamp(1.6rem, 4vw, 2.8rem) 0 clamp(1.4rem, 3.4vw, 2.2rem); */
+  color: var(--cream);
+  background:
+    radial-gradient(
+      60% 70% at 50% 45%,
+      rgba(110, 20, 35, 0.34),
+      transparent 75%
+    ),
+    linear-gradient(180deg, var(--night) 0%, #0e0604 100%);
+}
+.slogan::after {
+  /* thin gold rule closing the band */
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(212, 162, 58, 0.5),
+    transparent
+  );
+}
+.slogan-dust {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.55;
+  background-image:
+    radial-gradient(
+      1.5px 1.5px at 12% 22%,
+      rgba(241, 212, 137, 0.7),
+      transparent
+    ),
+    radial-gradient(1px 1px at 82% 14%, rgba(241, 212, 137, 0.6), transparent),
+    radial-gradient(
+      1.5px 1.5px at 68% 72%,
+      rgba(241, 212, 137, 0.5),
+      transparent
+    ),
+    radial-gradient(1px 1px at 28% 80%, rgba(241, 212, 137, 0.55), transparent),
+    radial-gradient(1px 1px at 93% 52%, rgba(241, 212, 137, 0.5), transparent);
+}
+.slogan-inner {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: clamp(0.5rem, 1.4vw, 0.8rem);
+  padding: clamp(1rem, 4vw, 1.6rem) 0 clamp(1.2rem, 3.4vw, 2.2rem);
+}
+
+.slogan-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0.35rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(241, 212, 137, 0.45);
+  background: rgba(212, 162, 58, 0.08);
+  font: 700 0.7rem/1.2 var(--sans);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-l);
+}
+.slogan-chip i {
+  font-style: normal;
+  font-size: 0.55rem;
+  color: var(--gold);
+}
+.slogan-place {
+  margin: 0;
+  font: 600 0.72rem/1.5 var(--sans);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(212, 162, 58, 0.85);
+  text-wrap: balance;
+}
+
+.slogan-quote {
+  position: relative;
+  margin: clamp(0.4rem, 1.6vw, 1rem) 0 0;
+  padding: 0 clamp(1.8rem, 6vw, 4.5rem);
+}
+.slogan-ml {
+  margin: 0;
+  max-width: none;
+  font-family: var(--mal);
+  font-weight: 600;
+  font-size: clamp(1.7rem, 4.6vw, 3.4rem);
+  line-height: 1.5;
+  color: #fff0cd;
+  text-shadow:
+    0 0 22px rgba(241, 212, 137, 0.45),
+    0 2px 10px rgba(0, 0, 0, 0.5);
+}
+.slogan-ml span {
+  display: block;
+}
+.slogan-mark {
+  position: absolute;
+  font: 700 clamp(2.4rem, 6vw, 4.2rem)/1 var(--serif);
+  color: rgba(212, 162, 58, 0.55);
+  pointer-events: none;
+}
+.slogan-mark.open {
+  top: -0.15em;
+  left: 0;
+}
+.slogan-mark.close {
+  bottom: -0.45em;
+  right: 0;
+}
+
+.slogan-en {
+  margin: clamp(0.6rem, 2vw, 1.2rem) 0 0;
+  max-width: 46ch;
+  font: italic 500 clamp(1rem, 1.9vw, 1.2rem)/1.5 var(--serif);
+  color: rgba(251, 243, 225, 0.82);
+  text-wrap: balance;
+}
+
+.slogan-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  width: min(380px, 70%);
+  color: var(--gold);
+  margin-top: 0.4rem;
+}
+.slogan-divider span {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 162, 58, 0.7));
+}
+.slogan-divider span:last-child {
+  background: linear-gradient(270deg, transparent, rgba(212, 162, 58, 0.7));
+}
+
+.slogan-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.3rem 0;
+  margin: 0.2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.slogan-tags li {
+  font: 600 0.7rem/1.6 var(--sans);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(212, 162, 58, 0.78);
+}
+.slogan-tags li + li::before {
+  content: "◆";
+  margin: 0 0.9rem;
+  font-size: 0.45rem;
+  vertical-align: middle;
+  color: rgba(212, 162, 58, 0.6);
+}
+
+@media (max-width: 640px) {
+  .slogan-chip {
+    font-size: 0.62rem;
+    padding: 0.3rem 0.9rem;
+  }
+  .slogan-place {
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+  }
+  .slogan-quote {
+    padding: 0 1.4rem;
+  }
+  .slogan-mark.open {
+    left: -0.1rem;
+  }
+  .slogan-mark.close {
+    right: -0.1rem;
+    bottom: -0.35em;
+  }
+  .slogan-tags {
+    flex-direction: column;
+    align-items: center;
+  }
+  .slogan-tags li + li::before {
+    display: none;
+  }
+  .slogan-tags li {
+    letter-spacing: 0.1em;
+    font-size: 0.64rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) and (min-width: 99999px) { /* off: motion flag in src/motion/config.js */
+  .page-hero-bg {
+    animation: none;
+  }
+}
+
+/* Malayalam: no tracking / caps (lang.css), keep the chips readable */
+html[lang="ml"] .slogan-chip,
+html[lang="ml"] .slogan-place,
+html[lang="ml"] .slogan-tags li {
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+html[lang="ml"] .slogan-en {
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  line-height: 1.8;
+}
+@media (max-width: 640px) {
+  html[lang="ml"] .slogan-chip,
+  html[lang="ml"] .slogan-place,
+  html[lang="ml"] .slogan-tags li {
+    font-size: 0.78rem;
+  }
+}

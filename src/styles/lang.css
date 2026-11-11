@@ -1,0 +1,134 @@
+/* =========================================================
+   LANGUAGE — switch (lng-) and Malayalam typography.
+   Loaded last so the Malayalam rules sit on top of the base styles.
+   ========================================================= */
+
+/* ---------- Language switch ---------- */
+.lng-tools { display: flex; align-items: center; gap: 0.6rem; flex: none; }
+.lng-dd { position: relative; }
+.lng-btn {
+  appearance: none; display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer;
+  border: 1.5px solid var(--brass); border-radius: 999px; background: transparent; color: var(--maroon);
+  font: 600 0.85rem/1.2 var(--sans); padding: 0.4rem 0.7rem 0.4rem 0.6rem;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.lng-btn:hover, .lng-dd.open .lng-btn { background: rgba(168, 116, 28, 0.14); }
+.lng-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.lng-globe { width: 1.1rem; height: 1.1rem; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; }
+.lng-caret { width: 0.65rem; height: 0.45rem; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.2s ease; }
+.lng-dd.open .lng-caret { transform: rotate(180deg); }
+
+.lng-menu {
+  position: absolute; top: calc(100% + 0.5rem); right: 0; z-index: 130; min-width: 10.5rem; margin: 0; padding: 0.35rem; list-style: none;
+  background: var(--cream); border: 1.5px solid var(--brass); border-radius: 14px;
+  box-shadow: 0 16px 36px rgba(42, 23, 16, 0.25); animation: lngIn 0.18s ease both;
+}
+.lng-menu button {
+  appearance: none; display: flex; align-items: center; justify-content: space-between; gap: 0.8rem; width: 100%; cursor: pointer;
+  border: 0; border-radius: 10px; background: transparent; color: var(--maroon-d);
+  font: 500 1rem/1.4 var(--sans); padding: 0.55rem 0.8rem; text-align: left;
+}
+.lng-menu button:hover, .lng-menu button:focus-visible { background: rgba(168, 116, 28, 0.16); outline: none; }
+.lng-menu button.on { background: var(--maroon); color: var(--cream); }
+.lng-menu svg { width: 0.95rem; height: 0.95rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+@keyframes lngIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+@media (max-width: 480px) {
+  .lng-tools { gap: 0.4rem; }
+  .lng-btn { padding: 0.32rem 0.55rem 0.32rem 0.5rem; font-size: 0.78rem; gap: 0.3rem; }
+  .lng-globe { width: 1rem; height: 1rem; }
+  .lng-menu { min-width: 9.5rem; }
+}
+
+/* ---------- Malayalam typography ---------- */
+html[lang="ml"] {
+  --sans: "Mukta", "Noto Sans Malayalam", system-ui, sans-serif;
+  --serif: "Cormorant Garamond", "Noto Serif Malayalam", Georgia, serif;
+}
+
+/* Letter-spacing splits Malayalam conjuncts and chillus, so switch it off.
+   Uppercase and slanted (synthetic italic) text also do not suit the script. */
+html[lang="ml"] *,
+html[lang="ml"] *::before,
+html[lang="ml"] *::after {
+  letter-spacing: normal !important;
+  text-transform: none !important;
+}
+html[lang="ml"] * { font-style: normal; }
+
+/* Taller lines so the script's tall marks are not cramped or clipped */
+html[lang="ml"] body { line-height: 1.8; }
+html[lang="ml"] h1,
+html[lang="ml"] h2,
+html[lang="ml"] h3,
+html[lang="ml"] h4 { line-height: 1.4; }
+
+/* Hero title: smaller, with room inside the clipping box for the script */
+html[lang="ml"] .hero-title { font-size: clamp(2.3rem, 6.2vw, 4.3rem); line-height: 1.3; }
+html[lang="ml"] .hero-title .w { padding: 0.12em 0 0.22em; }
+html[lang="ml"] .hero-sub { font-size: clamp(1.1rem, 2.2vw, 1.5rem); line-height: 1.6; }
+
+/* Brand */
+html[lang="ml"] .brand-text strong { font-size: 1.2rem; line-height: 1.4; }
+html[lang="ml"] .brand-text span { font-size: 0.78rem; line-height: 1.5; }
+@media (max-width: 480px) {
+  html[lang="ml"] .brand-text strong { font-size: 1rem; }
+  html[lang="ml"] .brand-text span { font-size: 0.66rem; }
+}
+
+/* A drop cap would split a Malayalam letter cluster */
+html[lang="ml"] .dropcap::first-letter {
+  font: inherit;
+  float: none;
+  padding: 0;
+  line-height: inherit;
+}
+
+/* The "today" tag on the darshan ticker is generated text */
+html[lang="ml"] .tm-item.today b::after { content: " · ഇന്ന്"; }
+
+/* The "today" tag in the footer timings */
+html[lang="ml"] .ft-timings li.today .ft-day::after { content: " · ഇന്ന്"; }
+
+/* ---------- Tamil typography (mirrors the Malayalam rules) ---------- */
+html[lang="ta"] {
+  --sans: "Mukta", "Noto Sans Tamil", system-ui, sans-serif;
+  --serif: "Cormorant Garamond", "Noto Serif Tamil", Georgia, serif;
+}
+html[lang="ta"] *,
+html[lang="ta"] *::before,
+html[lang="ta"] *::after {
+  letter-spacing: normal !important;
+  text-transform: none !important;
+}
+html[lang="ta"] * { font-style: normal; }
+html[lang="ta"] body { line-height: 1.75; }
+html[lang="ta"] h1, html[lang="ta"] h2, html[lang="ta"] h3, html[lang="ta"] h4 { line-height: 1.4; }
+html[lang="ta"] .hero-title { font-size: clamp(2.1rem, 5.4vw, 3.9rem); line-height: 1.3; }
+html[lang="ta"] .hero-title .w { padding: 0.12em 0 0.22em; }
+html[lang="ta"] .hero-sub { font-size: clamp(1.1rem, 2.2vw, 1.5rem); line-height: 1.6; }
+html[lang="ta"] .brand-text strong { font-size: 1.15rem; line-height: 1.4; }
+html[lang="ta"] .brand-text span { font-size: 0.78rem; line-height: 1.5; }
+@media (max-width: 480px) {
+  html[lang="ta"] .brand-text strong { font-size: 1rem; }
+  html[lang="ta"] .brand-text span { font-size: 0.66rem; }
+}
+html[lang="ta"] .dropcap::first-letter { font: inherit; float: none; padding: 0; line-height: inherit; }
+html[lang="ta"] .tm-item.today b::after { content: " · இன்று"; }
+html[lang="ta"] .ft-timings li.today .ft-day::after { content: " · இன்று"; }
+html[lang="ta"] .slogan-chip, html[lang="ta"] .slogan-place, html[lang="ta"] .slogan-tags li { font-size: 0.85rem; line-height: 1.7; }
+html[lang="ta"] .slogan-en { font-size: clamp(1.05rem, 2vw, 1.25rem); line-height: 1.8; }
+html[lang="ta"] .sg-meaning { font-family: var(--sans); font-style: normal; }
+
+/* ---------- Script sizes ----------
+   Everything is sized in rem, so one number per script scales the whole site.
+   English stays at 16px. Malayalam glyphs are wide and tall, so 15px.
+   Tamil letters are the widest of the three, so it is the smallest: 14px. */
+html[lang="ml"] { font-size: 93.75%; }
+html[lang="ta"] { font-size: 87.5%; }
+html[lang="ml"] .page-hero h1 { font-size: clamp(2.3rem, 6vw, 4.4rem); }
+html[lang="ta"] .page-hero h1 { font-size: clamp(2.1rem, 5.2vw, 3.8rem); }
+html[lang="ml"] .sec-title h2 { font-size: clamp(1.7rem, 4.2vw, 2.7rem); }
+html[lang="ta"] .sec-title h2 { font-size: clamp(1.55rem, 3.8vw, 2.4rem); }
+html[lang="ta"] .sg-rama-ml, html[lang="ml"] .sg-rama-ml { font-size: clamp(1.7rem, min(4.6vw, 8svh), 3.8rem); }
+html[lang="ta"] .slogan-ml { font-size: clamp(1.15rem, min(2.8vw, 4.2svh), 1.9rem); }
+html[lang="ml"] .slogan-ml { font-size: clamp(1.2rem, min(3vw, 4.5svh), 2rem); }

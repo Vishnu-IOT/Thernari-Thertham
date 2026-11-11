@@ -1,0 +1,31 @@
+/* =========================================================
+   framer-motion support styles.
+   The old CSS-only animations are switched off for the pieces that are
+   now driven by framer-motion, so the two never fight each other.
+   ========================================================= */
+
+/* Reveal(): framer-motion sets opacity / transform itself */
+.reveal.rv-m { transition: none; }
+
+/* Page enter / leave is done by <motion.main> */
+.page.pg-m { animation: none; }
+
+/* Back-to-top button: only colours transition in CSS */
+.back-top.bt-m { transition: background 0.3s, box-shadow 0.3s; }
+
+/* Language menu opens with framer-motion */
+.lng-menu.lm-m { animation: none; }
+
+/* Navigation: a gold ink bar slides between the links (layoutId) */
+.desktop-nav a.active::after { transform: scaleX(0); }
+.desktop-nav a { position: relative; }
+.nav-ink {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--saffron));
+  pointer-events: none;
+}

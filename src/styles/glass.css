@@ -1,0 +1,146 @@
+/* =========================================================
+   GLASS LAYER: frosted-glass look for header, cards, donation, menus.
+   Loads last. It only adds to existing class names.
+   (The header uses a ::before layer, because backdrop-filter on the header
+   itself would trap the fixed mobile menu inside it.)
+   ========================================================= */
+:root {
+  --glass-blur: blur(18px) saturate(1.6);
+  --glass-light: linear-gradient(140deg, rgba(255, 255, 255, 0.72), rgba(255, 249, 232, 0.42));
+  --glass-edge: rgba(255, 255, 255, 0.78);
+  --glass-shadow: 0 18px 46px rgba(63, 11, 21, 0.13), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+/* ---------- header ---------- */
+.site-header { background: transparent; }
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(251, 243, 225, calc(0.74 + 0.16 * var(--hglass, 0))),
+    rgba(251, 243, 225, calc(0.56 + 0.3 * var(--hglass, 0)))
+  );
+  backdrop-filter: blur(calc(14px + 10px * var(--hglass, 0))) saturate(1.7);
+  -webkit-backdrop-filter: blur(calc(14px + 10px * var(--hglass, 0))) saturate(1.7);
+  box-shadow: 0 calc(6px + 8px * var(--hglass, 0)) 30px rgba(63, 11, 21, calc(0.06 + 0.1 * var(--hglass, 0)));
+}
+.drawer {
+  background: rgba(251, 243, 225, 0.82);
+  backdrop-filter: blur(22px) saturate(1.5);
+  -webkit-backdrop-filter: blur(22px) saturate(1.5);
+}
+.drawer-backdrop.on { backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); }
+.lng-menu {
+  background: rgba(255, 250, 236, 0.78);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+.back-top.bt-m {
+  background: rgba(110, 20, 35, 0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+.jump {
+  background: rgba(251, 243, 225, 0.72);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+}
+
+/* ---------- cards ---------- */
+.card,
+.pay-card {
+  background: var(--glass-light);
+  border: 1px solid var(--glass-edge);
+  border-top: 3px solid var(--brass);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
+  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+.card:hover { box-shadow: 0 26px 60px rgba(63, 11, 21, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.9); }
+
+/* hero card (on top of the photo) */
+.hero-card {
+  background: linear-gradient(160deg, rgba(63, 11, 21, 0.55), rgba(21, 7, 9, 0.62));
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* ---------- donation page ---------- */
+.dn-sec {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(520px 520px at 8% 6%, rgba(212, 162, 58, 0.34), transparent 70%),
+    radial-gradient(560px 560px at 96% 40%, rgba(110, 20, 35, 0.2), transparent 70%),
+    radial-gradient(480px 480px at 40% 105%, rgba(232, 137, 42, 0.24), transparent 70%),
+    var(--cream);
+}
+.dn-card,
+.pay-panel {
+  background: var(--glass-light);
+  border: 1px solid var(--glass-edge);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-shadow);
+}
+.dn-grid .field input,
+.dn-grid .select-field select {
+  background-color: rgba(255, 255, 255, 0.72);
+  border-color: rgba(176, 141, 60, 0.45);
+}
+.dn-grid .field input:focus,
+.dn-grid .select-field select:focus-visible {
+  background-color: #fff;
+  border-color: var(--maroon);
+  box-shadow: 0 0 0 4px rgba(212, 162, 58, 0.3);
+}
+.dn-amounts button:not(.on) { background: rgba(255, 255, 255, 0.6); }
+.dn-pay .pay-qr { background: rgba(255, 255, 255, 0.5); border: 1px solid rgba(255, 255, 255, 0.7); }
+.summary-card {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.02) 40%),
+    radial-gradient(100% 70% at 50% 0, rgba(106, 21, 38, 0.92) 0, rgba(47, 13, 20, 0.94) 62%, rgba(21, 7, 9, 0.96) 100%);
+  border: 1px solid rgba(241, 212, 137, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 24px 60px rgba(63, 11, 21, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+/* ---------- buttons: a soft light sweep on hover ---------- */
+.btn-gold,
+.btn-maroon {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn-gold::after,
+.btn-maroon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.4) 50%, transparent 70%);
+  transform: translateX(-130%);
+  transition: transform 0.8s var(--ease);
+}
+.btn-gold:hover::after,
+.btn-maroon:hover::after { transform: translateX(130%); }
+
+@supports not (backdrop-filter: blur(1px)) {
+  .site-header::before { background: var(--cream); }
+  .card, .pay-card, .dn-card, .pay-panel, .vs-glass { background: #fffdf6; }
+}
+
+/* ---------- gentle lift on hover for the glass cards ---------- */
+.card:hover,
+.pay-card:hover { transform: translateY(-6px); }

@@ -1,0 +1,39 @@
+/* =========================================================
+   TIMING MARQUEE — Sunday–Saturday darshan hours above the navbar
+   ========================================================= */
+.timing-marquee { display: flex; align-items: stretch; overflow: hidden; background: var(--deep); color: #ecd9a6; font-size: 0.9rem; }
+.bali-marquee { background: #351018; }
+.bali-marquee .tm-label { background: #70232c; color: #fff0cd; }
+.bali-marquee .tm-item b { color: #fff0cd; }
+.tm-label {
+  position: relative; z-index: 0; flex: none; display: flex; align-items: center; padding: 0.3rem 0.9rem;
+  background: var(--gold); color: #2a1305; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  box-shadow: 6px 0 14px rgba(0, 0, 0, 0.35);
+}
+.tm-window {
+  flex: 1; min-width: 0; overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 22px, #000 calc(100% - 22px), transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 22px, #000 calc(100% - 22px), transparent);
+}
+.tm-run { display: flex; width: max-content; animation: tmScroll var(--tm-duration, 48s) linear infinite; }
+.timing-marquee:hover .tm-run { animation-play-state: paused; }
+.tm-track { display: flex; flex: none; }
+.tm-item { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.32rem 0; white-space: nowrap; }
+.tm-item b { font: 600 1rem var(--serif); color: #fff0cd; }
+.tm-item i { font-style: normal; opacity: 0.55; }
+.tm-item em { margin: 0 1.5rem; font-style: normal; font-size: 0.55rem; color: var(--gold); }
+.tm-item.today b { color: var(--gold-l); }
+.tm-item.today b::after { content: " · today"; font: italic 500 0.85rem var(--sans); color: var(--gold); }
+@keyframes tmScroll { to { transform: translateX(-50%); } }
+
+@media (max-width: 480px) {
+  .timing-marquee { font-size: 0.8rem; }
+  .bali-marquee { font-size: 0.8rem; }
+  .tm-label { padding: 0.28rem 0.6rem; letter-spacing: 0.08em; font-size: 0.68rem; }
+  .tm-item b { font-size: 0.92rem; }
+}
+@media (prefers-reduced-motion: reduce) and (min-width: 99999px) { /* off: motion flag in src/motion/config.js */
+  .tm-run { animation: none !important; }
+  .tm-window { overflow-x: auto; scrollbar-width: none; }
+  .tm-track[aria-hidden="true"] { display: none; }
+}

@@ -1,0 +1,249 @@
+/* =========================================================
+   VISIT & CONTACT — one page
+   ========================================================= */
+.vc-sec {
+  display: block;
+}
+.vc-contact {
+  background: var(--parch);
+}
+.vc-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.2rem;
+}
+.vc-card {
+  padding: 1.6rem 1.4rem;
+  text-align: center;
+  border: 1px solid rgba(138, 90, 18, 0.4);
+  border-radius: 14px;
+  background: #fffaf0;
+  box-shadow: 0 10px 26px rgba(63, 11, 21, 0.1);
+}
+.vc-ic {
+  display: inline-grid;
+  place-items: center;
+  width: 3.2rem;
+  height: 3.2rem;
+  margin-bottom: 0.7rem;
+  border-radius: 50%;
+  background: var(--maroon);
+  color: var(--gold-l);
+}
+.vc-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.4rem;
+}
+.vc-card p {
+  margin-inline: auto;
+  overflow-wrap: anywhere;
+}
+.vc-card a {
+  text-decoration-color: var(--gold);
+  text-underline-offset: 4px;
+}
+
+.vc-week {
+  max-width: 760px;
+  margin: clamp(1.8rem, 4vw, 2.8rem) auto;
+}
+.vc-week h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.vc-week table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fffaf0;
+  box-shadow: 0 10px 26px rgba(63, 11, 21, 0.1);
+}
+.vc-week th,
+.vc-week td {
+  padding: 0.7rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(138, 90, 18, 0.22);
+}
+.vc-week thead th {
+  background: var(--maroon);
+  color: var(--gold-l);
+  font-family: var(--serif);
+  font-size: 1.1rem;
+}
+.vc-week tbody th {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: var(--maroon-d);
+}
+.vc-week .note {
+  text-align: center;
+  margin-inline: auto;
+}
+
+.vc-routes {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: clamp(1.4rem, 4vw, 3rem);
+  align-items: stretch;
+}
+.vc-map {
+  position: relative;
+  min-height: 360px;
+  overflow: hidden;
+  border: 2px solid var(--gold);
+  border-radius: 14px;
+  background: var(--night-2);
+}
+.vc-map iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.vc-map-btn {
+  position: absolute;
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+.vc-map-btn:hover {
+  transform: translateX(-50%) translateY(-2px);
+}
+.vc-panel {
+  align-self: center;
+}
+.vc-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+.vc-tabs button {
+  padding: 0.45rem 1.1rem;
+  border-radius: 999px;
+  border: 1.5px solid rgba(110, 20, 35, 0.35);
+  background: transparent;
+  color: var(--maroon);
+  font-weight: 600;
+}
+.vc-tabs button.on {
+  background: var(--maroon);
+  border-color: var(--maroon);
+  color: var(--cream);
+}
+.vc-body {
+  animation: riseIn 0.5s var(--ease) both;
+  white-space: pre-line;
+}
+.vc-body h3 {
+  margin-bottom: 0.5rem;
+}
+
+.vc-message {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.8rem, 5vw, 4rem);
+  align-items: start;
+}
+.vc-copy .note a {
+  text-decoration-color: var(--gold);
+  text-underline-offset: 4px;
+}
+.vc-form {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1.3rem, 3vw, 2rem);
+  border: 1px solid rgba(138, 90, 18, 0.4);
+  border-radius: 14px;
+  background: #fffaf0;
+  box-shadow: 0 14px 34px rgba(63, 11, 21, 0.12);
+}
+.vc-form label {
+  display: grid;
+  gap: 0.35rem;
+  font-weight: 600;
+  color: var(--maroon-d);
+}
+.vc-form em {
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+.vc-form input,
+.vc-form textarea {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  font: inherit;
+  color: var(--ink);
+  background: #fff;
+  border: 1.5px solid rgba(110, 20, 35, 0.3);
+  border-radius: 10px;
+}
+.vc-form textarea {
+  resize: vertical;
+  min-height: 7rem;
+}
+.vc-form input:focus,
+.vc-form textarea:focus {
+  outline: none;
+  border-color: var(--maroon);
+  box-shadow: 0 0 0 3px rgba(212, 162, 58, 0.35);
+}
+.vc-ok {
+  min-height: 1.5em;
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--gold-d);
+}
+
+@media (max-width: 860px) {
+  .vc-routes,
+  .vc-message {
+    grid-template-columns: 1fr;
+  }
+  .vc-map {
+    min-height: 300px;
+  }
+}
+@media (max-width: 480px) {
+  .vc-week th,
+  .vc-week td {
+    padding: 0.55rem 0.55rem;
+    font-size: 0.9rem;
+  }
+  .vc-week tbody th,
+  .vc-week thead th {
+    font-size: 1rem;
+  }
+}
+
+/* Extra mobile polish */
+@media (max-width: 640px) {
+  .vc-cards {
+    grid-template-columns: 1fr;
+  }
+  .vc-map {
+    min-height: 260px;
+  }
+  .vc-map-btn {
+    width: calc(100% - 2rem);
+    text-align: center;
+    white-space: normal;
+  }
+  .vc-tabs button {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+  .vc-week {
+    overflow-x: auto;
+  }
+  .vc-form input,
+  .vc-form textarea {
+    font-size: 16px;
+  }
+  .vc-form .btn {
+    width: 100%;
+  }
+}

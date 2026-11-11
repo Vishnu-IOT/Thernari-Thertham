@@ -1,0 +1,214 @@
+/* =========================================================
+   Donation page: compact two-column layout (all classes start with dn-)
+   Left: one short form card.  Right: your offering + pay-direct card.
+   On phones it becomes one column with the "Continue" bar fixed at the bottom.
+   ========================================================= */
+
+.dn-sec { padding-block: clamp(1.6rem, 4vw, 3rem); }
+.dn-sec .thanks { animation: none; }
+
+.dn-grid {
+  max-width: 1080px;
+  margin-inline: auto;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  grid-template-areas:
+    "form summary"
+    "form pay";
+  gap: 1.1rem clamp(1rem, 2.6vw, 1.8rem);
+  align-items: start;
+}
+.dn-grid > .dn-form { grid-area: form; }
+.dn-grid > .pay-panel { grid-area: pay; margin: 0; max-width: none; }
+.dn-grid > .summary { grid-area: summary; }
+
+/* ---------- the form card ---------- */
+.dn-card {
+  background: #fffcf3;
+  border: 1px solid rgba(176, 141, 60, 0.5);
+  border-radius: 18px;
+  padding: clamp(1rem, 2.4vw, 1.5rem);
+  box-shadow: 0 14px 34px rgba(63, 11, 21, 0.08);
+}
+.dn-form { gap: 1.1rem; }
+
+.dn-step legend {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+  font-size: clamp(1.08rem, 2vw, 1.28rem);
+  line-height: 1.25;
+}
+.dn-num {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 1.55rem;
+  height: 1.55rem;
+  border-radius: 50%;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--gold-l);
+  background: var(--maroon);
+}
+
+.dn-grid .select-field select { min-height: 2.75rem; }
+.dn-grid .select-hint { margin-top: 0.5rem; font-size: 0.85rem; line-height: 1.5; }
+
+/* amount chips: one row, with a sliding highlight */
+.dn-amounts {
+  grid-template-columns: repeat(auto-fit, minmax(5.1rem, 1fr));
+  gap: 0.5rem;
+  margin-bottom: 0.7rem;
+}
+.dn-amounts button {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 0.55rem 0.3rem;
+  font-size: 1.08rem;
+  transition: color 0.3s, border-color 0.3s;
+}
+.dn-amounts button:hover { transform: none; }
+.dn-amounts button.on {
+  background: #fff9ec;
+  color: var(--gold-l);
+  box-shadow: none;
+}
+.dn-chip-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--maroon);
+  box-shadow: 0 8px 18px rgba(110, 20, 35, 0.28);
+}
+.dn-chip-text { position: relative; }
+
+.dn-grid .step .field { margin-top: 0.6rem; }
+.dn-other span { font-size: 0.86rem; font-weight: 500; }
+.dn-rupee { position: relative; }
+.dn-rupee::before {
+  content: "\20B9";
+  position: absolute;
+  left: 0.9rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 600;
+  color: var(--maroon);
+  pointer-events: none;
+}
+.dn-rupee input { padding-left: 2rem; }
+
+.dn-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem 0.8rem;
+}
+.dn-fields .field { margin: 0; }
+.dn-fields .dn-span { grid-column: 1 / -1; }
+.dn-grid .field input {
+  min-height: 2.75rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 10px;
+}
+.dn-grid .field span { font-size: 0.9rem; }
+.dn-grid .err { margin: 0.4rem 0 0; overflow: hidden; }
+
+/* ---------- pay-direct card: QR / bank on tabs ---------- */
+.dn-pay { padding: 1rem 1.1rem 1.1rem; border-radius: 18px; }
+.dn-pay .pay-head h2 { margin: 0 0 0.2rem; font-size: 1.25rem; }
+.dn-pay .pay-head p { margin: 0 0 0.75rem; font-size: 0.82rem; line-height: 1.5; }
+.dn-pay .pay-cols { display: block; }
+
+.dn-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  margin-bottom: 0.8rem;
+  background: rgba(176, 141, 60, 0.16);
+  border-radius: 12px;
+}
+.dn-tabs button {
+  position: relative;
+  isolation: isolate;
+  padding: 0.5rem 0.4rem;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  background: none;
+  border: 0;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: color 0.25s;
+}
+.dn-tabs button.on { color: var(--cream); }
+.dn-tabs button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.dn-tab-pill {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 9px;
+  background: var(--maroon);
+  box-shadow: 0 6px 16px rgba(110, 20, 35, 0.28);
+}
+.dn-pay .pay-qr { padding: 0.8rem; }
+.dn-pay .qr-box { width: min(190px, 100%); }
+.dn-pay .bank-row { grid-template-columns: 7rem minmax(0, 1fr); padding: 0.5rem 0; }
+.dn-ico { display: grid; place-items: center; }
+
+/* ---------- "your offering" card (desktop) ---------- */
+@media (min-width: 901px) {
+  .dn-grid > .summary { position: static; }
+  .dn-grid .summary-card {
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "diya label"
+      "diya amount"
+      "diya purpose"
+      "btn  btn"
+      "note note";
+    justify-items: start;
+    align-items: center;
+    column-gap: 1rem;
+    padding: 1.1rem 1.2rem 1rem;
+    text-align: left;
+    border-radius: 18px;
+  }
+  .dn-grid .summary-diya { grid-area: diya; width: 64px; margin: 0; }
+  .dn-grid .summary-label { grid-area: label; font-size: 1.05rem; }
+  .dn-grid .summary-amount { grid-area: amount; font-size: clamp(1.9rem, 3.4vw, 2.4rem); }
+  .dn-grid .summary-purpose { grid-area: purpose; margin: 0; font-size: 0.95rem; }
+  .dn-grid .summary .btn { grid-area: btn; margin-top: 0.8rem; }
+  .dn-grid .summary-note { grid-area: note; margin-top: 0.6rem; font-size: 0.78rem; }
+}
+
+/* ---------- tablet / phone ---------- */
+@media (max-width: 900px) {
+  .dn-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "form"
+      "pay"
+      "summary";
+  }
+}
+@media (max-width: 480px) {
+  .dn-fields { grid-template-columns: 1fr; }
+  .dn-amounts { grid-template-columns: repeat(3, 1fr); }
+  .dn-pay .pay-qr { gap: 0.25rem; padding: 0.55rem; }
+  .dn-pay .qr-box { width: min(150px, 100%); }
+  .dn-form { gap: 0.8rem; }
+  .dn-step legend { margin-bottom: 0.45rem; }
+  .dn-grid .step .field { margin-top: 0.45rem; }
+  .dn-grid .field input,
+  .dn-grid .select-field select {
+    min-height: 2.65rem;
+    padding-block: 0.4rem;
+  }
+  .dn-grid .field span { font-size: 0.85rem; }
+  .dn-fields { gap: 0.5rem; }
+}

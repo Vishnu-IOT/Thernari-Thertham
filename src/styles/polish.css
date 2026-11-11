@@ -1,0 +1,439 @@
+/* Shared polish for temple subpages. Home heritage styling remains in heritage.css. */
+.site-header {
+  box-shadow: 0 8px 24px rgba(42, 23, 16, 0.16);
+}
+.header-main {
+  min-height: 82px;
+}
+.brand {
+  gap: 0.9rem;
+}
+.brand-text strong {
+  font-size: clamp(1.1rem, 1.6vw, 1.45rem);
+  letter-spacing: 0.025em;
+}
+.desktop-nav {
+  align-items: center;
+  gap: clamp(0.8rem, 1.5vw, 1.65rem) !important;
+}
+.desktop-nav a {
+  font-size: 1rem;
+  transition: color 0.22s ease;
+}
+.desktop-nav a:not(.nav-cta)::after {
+  height: 1px;
+  background: var(--gold);
+}
+.desktop-nav a.nav-cta {
+  padding: 0.55rem 1rem;
+  letter-spacing: 0.035em;
+}
+.desktop-nav {
+  display: flex !important;
+}
+.burger {
+  display: none !important;
+}
+.drawer {
+  background: linear-gradient(160deg, #fbefd9, #f2e3c3);
+  box-shadow: -18px 0 46px rgba(35, 12, 8, 0.2);
+}
+.drawer a {
+  transition:
+    color 0.2s ease,
+    padding-left 0.2s ease;
+}
+.drawer a:hover,
+.drawer a.active {
+  padding-left: 0.45rem;
+}
+.page-hero {
+  isolation: isolate;
+}
+.page-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.16;
+  background-image: radial-gradient(
+    rgba(255, 238, 202, 0.55) 0.65px,
+    transparent 0.65px
+  );
+  background-size: 7px 7px;
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 30%,
+    #000 70%,
+    transparent
+  );
+}
+.page-hero .ph-inner {
+  padding-top: 0.35rem;
+}
+.page-hero h1 {
+  text-wrap: balance;
+  letter-spacing: 0.015em;
+  text-shadow: 0 2px 20px rgba(20, 8, 4, 0.16);
+}
+.ph-sub {
+  max-width: 54ch;
+  text-wrap: pretty;
+}
+.temple-title {
+  max-width: 760px;
+  margin-inline: auto;
+}
+.temple-title .tt-sub {
+  max-width: 58ch;
+}
+.shrine-list,
+.mural-grid,
+.flag-grid,
+.places-row {
+  row-gap: clamp(2rem, 4vw, 3.5rem);
+}
+.shrine {
+  padding-block: clamp(1rem, 2vw, 1.5rem);
+}
+.shrine-text p,
+.mural-cap p,
+.flag-body p,
+.place-card p {
+  max-width: 58ch;
+}
+.mural,
+.flag-card,
+.place-card {
+  transition: transform 0.28s ease;
+}
+.mural:hover,
+.flag-card:hover,
+.place-card:hover {
+  transform: translateY(-4px);
+}
+.mural-img,
+.flag-card > img,
+.place-card > img {
+  overflow: hidden;
+}
+.mural-img img,
+.flag-card > img,
+.place-card > img {
+  transition: transform 0.55s ease;
+}
+.mural:hover .mural-img img,
+.flag-card:hover > img,
+.place-card:hover > img {
+  transform: scale(1.025);
+}
+.yatra-stop {
+  padding-bottom: 2.4rem;
+}
+.yatra-stop h2 {
+  text-wrap: balance;
+}
+.yatra-map .carved-frame {
+  height: 100%;
+  min-height: 390px;
+}
+.yatra-map iframe,
+.yatra-map .map-ph {
+  min-height: 390px;
+  height: 100%;
+}
+.invitation {
+  box-shadow: 0 22px 50px rgba(68, 31, 18, 0.13);
+}
+.invitation dl > div {
+  padding-bottom: 0.75rem;
+  border-bottom: 1px dotted var(--gold);
+}
+.invitation dl > div:last-child {
+  border-bottom: 0;
+}
+.btn,
+.link-btn,
+.filters button,
+.burger,
+.back-top {
+  transition-duration: 0.22s;
+}
+.btn:active,
+.filters button:active,
+.burger:active,
+.back-top:active {
+  transform: translateY(1px) scale(0.98);
+}
+.btn:focus-visible,
+.link-btn:focus-visible,
+.filters button:focus-visible,
+.burger:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 4px;
+}
+@media (max-width: 900px) {
+  .header-main {
+    min-height: 72px;
+  }
+  .yatra-map .carved-frame,
+  .yatra-map iframe,
+  .yatra-map .map-ph {
+    min-height: 330px;
+  }
+}
+@media (max-width: 1120px) {
+  .desktop-nav {
+    display: none !important;
+  }
+  .burger {
+    display: flex !important;
+  }
+}
+@media (max-width: 600px) {
+  .page-hero {
+    padding-top: 3rem;
+  }
+  .ph-mal {
+    font-size: 1.2rem;
+  }
+  .temple-title .tt-row {
+    gap: 0.55rem;
+  }
+  .tt-lotus {
+    font-size: 1.1rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mural,
+  .flag-card,
+  .place-card,
+  .mural-img img,
+  .flag-card > img,
+  .place-card > img {
+    transition: none;
+  }
+}
+
+/* Footer: temple details, a compact site index and clear visit actions. */
+.site-footer {
+  background: linear-gradient(145deg, #421018, #2e0910 78%);
+}
+.site-footer .container {
+  padding-top: 0;
+}
+.site-footer::after {
+  bottom: -370px;
+  opacity: 0.55;
+}
+.site-footer .footer-grid {
+  grid-template-columns: minmax(15rem, 1.25fr) minmax(10rem, 0.7fr) minmax(
+      15rem,
+      1fr
+    );
+  gap: clamp(2rem, 5vw, 5rem);
+  padding-top: clamp(2.5rem, 5vw, 4rem);
+  padding-bottom: clamp(2.5rem, 5vw, 3.5rem);
+}
+.footer-brand,
+.footer-nav,
+.footer-visit {
+  position: relative;
+  z-index: 1;
+}
+.footer-kicker {
+  margin-bottom: 0.8rem;
+  color: var(--gold);
+  font: 600 0.78rem var(--sans);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.site-footer .footer-brand h2 {
+  max-width: 12ch;
+  color: #fff3d6;
+  font-size: clamp(2rem, 3.4vw, 2.8rem);
+  line-height: 1.04;
+  text-wrap: balance;
+}
+.site-footer .footer-sub {
+  max-width: 30ch;
+  margin-top: 0.8rem;
+  color: #dfc995;
+  font: 500 1.1rem/1.5 var(--serif);
+}
+.site-footer .footer-mantra {
+  margin-top: 1.4rem;
+  color: var(--gold);
+  font: 600 1.15rem var(--serif);
+  letter-spacing: 0.1em;
+}
+.site-footer .footer-nav h3,
+.site-footer .footer-visit h3 {
+  margin-bottom: 0.9rem;
+  color: #fff3d6;
+  font: 600 1.1rem var(--serif);
+  letter-spacing: 0.08em;
+}
+.site-footer .footer-nav ul {
+  grid-template-columns: 1fr 1fr;
+  gap: 0.05rem 1rem;
+}
+.site-footer .footer-nav li a {
+  padding: 0.28rem 0;
+  color: #e7d4ad;
+  font-size: 0.96rem;
+}
+.site-footer .footer-nav li a::after {
+  background: var(--gold);
+}
+.site-footer .footer-visit address {
+  max-width: 32ch;
+  color: #e7d4ad;
+  font-style: normal;
+  line-height: 1.55;
+}
+.footer-hours {
+  margin-top: 1.15rem;
+  color: var(--gold);
+  font: 600 1rem/1.65 var(--serif);
+}
+.footer-hours span {
+  color: #e7d4ad;
+  font: 400 0.95rem/1.6 var(--sans);
+}
+.footer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.2rem;
+  margin-top: 1.15rem;
+}
+.site-footer .footer-actions a {
+  display: inline-flex;
+  gap: 0.45rem;
+  align-items: center;
+  padding-bottom: 0.2rem;
+  color: #fff0cd;
+  border-bottom: 1px solid rgba(201, 162, 77, 0.65);
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+.site-footer .footer-actions a:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+.footer-actions a span {
+  color: var(--gold);
+  font-size: 0.85em;
+}
+.site-footer .footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.site-footer .footer-social a {
+  color: #e7d4ad;
+}
+.site-footer > .kasavu {
+  position: relative;
+  z-index: 1;
+  height: 8px;
+  background: linear-gradient(
+    var(--gold) 0 2px,
+    transparent 2px 4px,
+    rgba(201, 162, 77, 0.45) 4px 5px,
+    transparent 5px 8px
+  );
+}
+.site-footer .copyright {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  padding: 1rem 1.25rem;
+  background: rgba(20, 4, 8, 0.34);
+  color: #ddc99f;
+  font-size: 0.88rem;
+}
+.site-footer .copyright p {
+  margin: 0;
+}
+.site-footer .copyright a {
+  color: #f3dfb4;
+  text-underline-offset: 0.22em;
+}
+@media (max-width: 900px) {
+  .site-footer .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem 3rem;
+  }
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 560px) {
+  .site-footer .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .footer-brand {
+    grid-column: auto;
+  }
+  .site-footer .footer-nav ul {
+    grid-template-columns: 1fr 1fr;
+  }
+  .site-footer .copyright {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* Image-backed page banners. The home sanctum hero has its own treatment. */
+.page-hero {
+  background-image:
+    linear-gradient(180deg, rgba(48, 10, 15, 0.62), rgba(35, 7, 12, 0.82)),
+    url("/images/temple/heritage.png");
+  background-position:
+    center,
+    center 38%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.page-hero.theme-ola {
+  background-image:
+    linear-gradient(180deg, rgba(65, 39, 14, 0.62), rgba(45, 25, 9, 0.84)),
+    url("/images/temple/heritage.png");
+}
+.page-hero.theme-water {
+  background-image:
+    linear-gradient(180deg, rgba(10, 61, 59, 0.58), rgba(8, 39, 40, 0.82)),
+    url("/images/temple/boat-god.jpeg");
+  background-position:
+    center,
+    center 45%;
+}
+.page-hero.theme-board {
+  background-image:
+    linear-gradient(180deg, rgba(49, 29, 18, 0.62), rgba(32, 17, 10, 0.84)),
+    url("/images/temple/heritage.png");
+}
+.page-hero.theme-saffron {
+  background-image:
+    linear-gradient(180deg, rgba(109, 57, 10, 0.62), rgba(65, 29, 7, 0.84)),
+    url("/images/temple/heritage.png");
+}
+.page-hero.theme-gallery {
+  background-image:
+    linear-gradient(180deg, rgba(46, 9, 17, 0.6), rgba(29, 5, 10, 0.84)),
+    url("/images/temple/heritage.png");
+}
+.page-hero.theme-green {
+  background-image:
+    linear-gradient(180deg, rgba(37, 59, 30, 0.62), rgba(20, 39, 17, 0.84)),
+    url("/images/temple/heritage.png");
+}

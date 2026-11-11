@@ -1,0 +1,1618 @@
+/* Heritage design layer (v3): light, Kerala-inspired, asymmetric. Loads after global.css. */
+:root {
+  --sage: #e5e8d4;
+  --sandstone: #ead9b6;
+  --line: #d6c298;
+  --brass-l: #d8b765;
+  --deep: #5a1420;
+  --kasavu: linear-gradient(
+    var(--brass) 0 1.5px,
+    transparent 1.5px 4px,
+    var(--maroon) 4px 6px,
+    transparent 6px 8.5px,
+    var(--brass) 8.5px 10px
+  );
+  --stone: url(https://picsum.photos/seed/temple-stone/1600/900);
+  /* replace with /images/temple/texture.jpg */
+  --hh: 100px;
+}
+
+body {
+  background: var(--cream);
+  color: #4a3629;
+  text-wrap: pretty;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 90;
+  opacity: 0.05;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+main img,
+.lightbox img {
+  /* filter: sepia(0.2) saturate(0.88) contrast(1.02); */
+  /* background: var(--sandal); */
+}
+
+/* typography */
+h1,
+h2,
+h3 {
+  font-weight: 600;
+  text-wrap: balance;
+}
+
+h2 {
+  font-size: clamp(2.1rem, 4.8vw, 3.4rem);
+  letter-spacing: 0.015em;
+  line-height: 1.08;
+}
+
+h3 {
+  font-size: 1.6rem;
+}
+
+p {
+  max-width: 62ch;
+  line-height: 1.8;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font: italic 600 1.2rem var(--serif);
+  letter-spacing: 0.04em;
+  color: var(--red);
+  justify-content: flex-start;
+}
+
+.label::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: var(--brass);
+}
+
+.label::after {
+  display: none;
+}
+
+.label.light {
+  color: var(--red);
+}
+
+/* kasavu ornament: the cream-and-gold border of Kerala's traditional cloth */
+.divider:not(.light) {
+  display: block;
+  width: 96px;
+  height: 10px;
+  margin: 1.3rem 0 1.6rem;
+  background: var(--kasavu);
+  max-width: none;
+}
+
+.divider:not(.light)::before,
+.divider:not(.light)::after,
+.divider:not(.light) span {
+  display: none;
+}
+
+.divider.light {
+  color: var(--brass);
+  margin-bottom: 2rem;
+}
+
+.section {
+  padding: clamp(4.5rem, 9vw, 7.5rem) 0 clamp(5rem, 10vw, 8.5rem);
+}
+
+.section.tint {
+  background: var(--parch);
+}
+
+.tint::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: var(--kasavu);
+  opacity: 0.8;
+}
+
+.tint {
+  position: relative;
+}
+
+.section-heading {
+  text-align: left;
+  max-width: 680px;
+  margin-bottom: 3.2rem;
+}
+
+.section-heading .sub {
+  margin: 0.9rem 0 0;
+  font: italic 500 1.35rem/1.5 var(--serif);
+  color: #6b5242;
+}
+
+.center {
+  text-align: left;
+}
+
+.timings + .center,
+.section > .container > p.center {
+  text-align: left;
+}
+
+.heritage .divider + p {
+  font: 500 1.4rem/1.65 var(--serif);
+  color: var(--maroon-d);
+}
+
+/* buttons */
+.btn {
+  border-radius: 0;
+  padding: 0.8rem 2rem;
+  letter-spacing: 0.08em;
+  transition:
+    box-shadow 0.3s,
+    background 0.3s,
+    transform 0.15s;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:hover {
+  transform: none;
+}
+
+.btn-maroon {
+  background: var(--maroon);
+  border-color: var(--maroon);
+  box-shadow:
+    inset 0 0 0 3px var(--maroon),
+    inset 0 0 0 4px rgba(216, 183, 101, 0.7);
+}
+
+.btn-maroon:hover {
+  background: var(--maroon);
+  box-shadow:
+    inset 0 0 0 3px var(--maroon),
+    inset 0 0 0 4px var(--brass-l),
+    0 0 0 3px var(--cream),
+    0 0 0 4px var(--brass);
+}
+
+.btn-gold {
+  background: var(--brass);
+  box-shadow:
+    inset 0 0 0 3px var(--brass),
+    inset 0 0 0 4px rgba(255, 255, 255, 0.5);
+}
+
+.btn-gold:hover {
+  background: var(--brass);
+  box-shadow:
+    inset 0 0 0 3px var(--brass),
+    inset 0 0 0 4px #fff;
+}
+
+.btn-outline {
+  box-shadow: none;
+}
+
+.btn-outline:hover {
+  box-shadow:
+    inset 0 0 0 3px var(--maroon),
+    inset 0 0 0 4px var(--brass-l);
+}
+
+.btn-ghost {
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  padding: 0.4rem 0.2rem;
+  margin-left: 1.2rem;
+  box-shadow: none;
+}
+
+.btn-ghost::after {
+  content: " →";
+  transition: margin 0.3s;
+}
+
+.btn-ghost:hover {
+  background: none;
+  box-shadow: none;
+  border-color: #fff;
+}
+
+.btn-ghost:hover::after {
+  margin-left: 0.4rem;
+}
+
+.link-btn {
+  position: relative;
+  border: 0;
+  padding-bottom: 3px;
+}
+
+.link-btn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+  background: var(--brass);
+  transition: background 0.3s;
+}
+
+.link-btn:hover::after {
+  background: var(--red);
+}
+
+.link-btn:active {
+  transform: scale(0.97);
+}
+
+/* header */
+.heritage-strip {
+  background: var(--deep);
+  color: #ecd9a6;
+  letter-spacing: 0.22em;
+  padding: 0.3rem;
+}
+
+.site-header {
+  box-shadow: 0 1px 0 var(--line);
+}
+
+.header-border {
+  height: 10px;
+  background: var(--kasavu);
+  opacity: 1;
+  border: 0;
+}
+
+.emblem {
+  border-radius: 50% 50% 4px 4px;
+  /* background: var(--cream); */
+  box-shadow:
+    0 0 0 3px var(--cream),
+    0 0 0 4px var(--line);
+}
+
+.desktop-nav a::after {
+  height: 1px;
+  background: var(--brass);
+}
+
+.drawer {
+  border-left: 0;
+  padding-top: 4.5rem;
+}
+
+.drawer::before {
+  content: "॥ श्री राम ॥";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1.2rem;
+  background: var(--deep);
+  color: #ecd9a6;
+  font: 600 1.1rem var(--serif);
+  letter-spacing: 0.2em;
+  text-align: center;
+}
+
+.page-banner {
+  background: var(--parch);
+  padding-bottom: 4.5rem;
+  position: relative;
+}
+
+.page-banner::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 10px;
+  background: var(--kasavu);
+}
+
+.page-banner h1::after {
+  content: "";
+  display: block;
+  width: 90px;
+  height: 1px;
+  margin: 1rem auto 0;
+  background: var(--brass);
+}
+
+/* hero */
+/* ---------- HOME: hero ---------- */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+  color: var(--cream);
+  /* padding: calc(var(--hh) + 1.5rem) 0 5rem; */
+  background: radial-gradient(
+    70% 70% at 72% 42%,
+    #6a1526 0,
+    #331019 48%,
+    var(--night) 82%
+  );
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.hero-title {
+  color: var(--cream);
+  font-size: clamp(3.2rem, 9vw, 6.6rem);
+  font-weight: 600;
+  line-height: 1;
+  margin: 0.5rem 0 1rem;
+}
+
+.hero-title .w {
+  display: block;
+  overflow: hidden;
+  padding: 0.04em 0 0.1em;
+}
+
+.hero-title .w i {
+  display: block;
+  font-style: normal;
+  transform: translateY(112%);
+}
+
+html.ready .hero-title .w i {
+  animation: wordUp 1.2s var(--ease) var(--d) forwards;
+}
+
+.hero-title .w:last-child i {
+  color: var(--gold-l);
+}
+
+.hero-sub {
+  font-family: var(--serif);
+  font-size: clamp(1.3rem, 2.6vw, 1.75rem);
+  font-style: italic;
+  color: var(--gold-l);
+}
+
+.hero-tag {
+  margin-top: 0.8rem;
+  max-width: 44ch;
+  color: rgba(251, 243, 225, 0.82);
+}
+
+.hero-stage {
+  position: relative;
+  width: min(100%, 620px);
+  aspect-ratio: 1;
+  justify-self: center;
+  opacity: 0;
+  transform: scale(0.86);
+}
+
+html.ready .hero-stage {
+  animation: stageIn 1.8s var(--ease) 0.1s forwards;
+}
+
+@keyframes stageIn {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hero-halo {
+  position: absolute;
+  inset: -18%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 190, 90, 0.38) 0,
+    rgba(232, 137, 42, 0.12) 40%,
+    transparent 68%
+  );
+  animation: glow 6s ease-in-out infinite;
+}
+
+.hero-chakra-wrap {
+  position: absolute;
+  inset: -9%;
+  transform: translate3d(0, calc(var(--sy, 0) * 0.1px), 0);
+}
+
+.hero-chakra {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.92;
+  animation: spin 70s linear infinite;
+  filter: drop-shadow(0 0 40px rgba(232, 137, 42, 0.4));
+}
+
+.hero-deity {
+  -webkit-mask-image: linear-gradient(180deg, #000 82%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 82%, transparent 100%);
+  position: absolute;
+  left: 12%;
+  bottom: 0;
+  width: 76%;
+  height: auto;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.55));
+  animation: float 8s ease-in-out infinite;
+  transform: translate3d(0, calc(var(--sy, 0) * -0.04px), 0);
+}
+
+@keyframes float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -12px;
+  }
+}
+
+.scroll-cue {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: 1.4rem;
+  width: 28px;
+  height: 46px;
+  margin-left: -14px;
+  border: 1.5px solid rgba(241, 212, 137, 0.6);
+  border-radius: 16px;
+}
+
+.scroll-cue span {
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  width: 4px;
+  height: 8px;
+  margin-left: -2px;
+  border-radius: 2px;
+  background: var(--gold-l);
+  animation: cue 1.8s ease-in-out infinite;
+}
+
+@keyframes cue {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+@media (max-width: 860px) {
+  .hero {
+    align-items: start;
+    padding-bottom: 6rem;
+    padding-top: 4rem;
+  }
+
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .hero-stage {
+    order: -1;
+    width: min(80vw, 400px);
+    margin-top: 0.5rem;
+  }
+
+  .hero-tag,
+  .hero-sub {
+    margin-inline: auto;
+  }
+
+  .btn-row {
+    justify-content: center;
+  }
+}
+
+/* heritage: asymmetric, overlapping */
+.heritage {
+  position: relative;
+  overflow: hidden;
+}
+
+.heritage::before {
+  content: "";
+  position: absolute;
+  left: 120px;
+  top: -60px;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    rgba(176, 141, 60, 0.14) 0 3deg,
+    transparent 3deg 12deg
+  );
+  -webkit-mask-image: radial-gradient(circle, #000 25%, transparent 68%);
+  mask-image: radial-gradient(circle, #000 25%, transparent 68%);
+}
+
+.heritage .container {
+  position: relative;
+}
+
+.heritage .split {
+  grid-template-columns: 5fr 6fr;
+  align-items: start;
+  gap: clamp(2.5rem, 7vw, 6rem);
+}
+
+.heritage .split > .reveal:last-child {
+  padding-top: clamp(0rem, 6vw, 5rem);
+}
+
+.frames {
+  padding: 0;
+  border: 0;
+  max-width: 440px;
+  isolation: isolate;
+  margin: 0 0 0 clamp(0rem, 3vw, 3rem);
+}
+
+.frames img {
+  /* border-radius: 999px 999px 0 0; */
+  /* border: 1px solid var(--brass); */
+  padding: 8px;
+  /* background: #fffcf3; */
+  aspect-ratio: 3/4;
+}
+
+.frames::after {
+  inset: auto;
+  left: 20px;
+  top: 20px;
+  right: -20px;
+  bottom: -20px;
+  /* border: 1px solid var(--brass); */
+  /* border-radius: 999px 999px 0 0; */
+  z-index: -1;
+  opacity: 0.55;
+}
+
+/* RotatingChakra */
+.heritage-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.heritage-visual .rama-image {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* object-fit: contain; */
+}
+
+.rotating-chakra {
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  object-fit: contain;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  pointer-events: none;
+  animation: chakraRotate 45s linear infinite;
+  filter: drop-shadow(0 0 12px rgba(170, 110, 30, 0.25))
+    drop-shadow(0 0 30px rgba(170, 110, 30, 0.12));
+}
+
+@keyframes chakraRotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* theertham: light, water-toned (no dark block) */
+.theertham {
+  background: var(--sage);
+  color: #3f3a2c;
+  padding: clamp(5.5rem, 10vw, 8.5rem) 0;
+}
+
+.theertham::before,
+.theertham::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 14px;
+  z-index: 1;
+}
+
+.theertham::before {
+  top: -1px;
+  background: radial-gradient(
+      circle at 50% 0,
+      var(--cream) 0 13px,
+      transparent 14px
+    )
+    0 0/28px 14px repeat-x;
+}
+
+.theertham::after {
+  bottom: -1px;
+  background: radial-gradient(
+      circle at 50% 100%,
+      var(--cream) 0 13px,
+      transparent 14px
+    )
+    0 0/28px 14px repeat-x;
+}
+
+.theertham .container {
+  position: relative;
+  z-index: 2;
+}
+
+.theertham h2 {
+  color: var(--maroon-d);
+}
+
+.theertham .quote {
+  font: italic 500 clamp(1.6rem, 3vw, 2.2rem)/1.35 var(--serif);
+  color: var(--maroon);
+  border-left: 1px solid var(--brass);
+  padding-left: 1.2rem;
+  margin: 1.2rem 0 1.6rem;
+}
+
+.theertham .split {
+  grid-template-columns: 6fr 5fr;
+}
+
+.th-images {
+  padding-bottom: 4rem;
+}
+
+.th-images .big {
+  width: 80%;
+  aspect-ratio: 3/4;
+  border: 1px solid var(--brass);
+  padding: 8px;
+  background: #fffcf3;
+  border-radius: 999px 999px 0 0;
+  box-shadow: none;
+}
+
+.th-images .small {
+  width: 46%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid var(--brass);
+  padding: 6px;
+  background: #fffcf3;
+  box-shadow: 0 0 0 8px var(--sage);
+  right: 0;
+  bottom: 0;
+}
+
+.ripples i {
+  left: 30%;
+  border-color: rgba(110, 120, 70, 0.3);
+  animation-duration: 12s;
+}
+
+.ripples i:nth-child(2) {
+  animation-delay: 4s;
+}
+
+.ripples i:nth-child(3) {
+  animation-delay: 8s;
+}
+
+/* deities: one principal feature, then offset pair */
+.deity-list {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 4rem 2rem;
+  align-items: start;
+}
+
+.deity-card {
+  background: none;
+  border: 0;
+  outline: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+.deity-card .img-wrap {
+  border: 1px solid var(--brass);
+  padding: 7px;
+  background: #fffcf3;
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 1rem;
+}
+
+.deity-card .img-wrap img {
+  border-radius: 3px 3px 0 0;
+}
+
+.deity-card p {
+  margin-top: 0.3rem;
+}
+
+.deity-list > .deity-card:first-child {
+  grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: 5fr 6fr;
+  column-gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+  text-align: left;
+}
+
+.deity-list > .deity-card:first-child .img-wrap {
+  grid-row: 1 / span 2;
+  max-width: 430px;
+  border-radius: 999px 999px 0 0;
+  margin: 0;
+}
+
+.deity-list > .deity-card:first-child .img-wrap img {
+  border-radius: 999px 999px 0 0;
+  aspect-ratio: 3/4;
+}
+
+.deity-list > .deity-card:first-child h3 {
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  align-self: end;
+}
+
+.deity-list > .deity-card:first-child p {
+  align-self: start;
+  font: 500 1.3rem/1.6 var(--serif);
+}
+
+.deity-list > .deity-card:nth-child(2) {
+  grid-column: 2/7;
+  text-align: left;
+}
+
+.deity-list > .deity-card:nth-child(3) {
+  grid-column: 8/13;
+  margin-top: 4.5rem;
+  text-align: left;
+}
+
+/* pooja: schedule ledger, not cards */
+.pooja-list {
+  display: grid;
+  border-top: 1px solid var(--line);
+  max-width: 900px;
+}
+
+.pooja-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 2rem;
+  align-items: baseline;
+  padding: 1.8rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  outline: 0;
+  background: none;
+  box-shadow: none;
+  text-align: left;
+}
+
+.pooja-card::before {
+  display: none;
+}
+
+.pooja-card h3 {
+  grid-column: 1;
+}
+
+.pooja-card .time {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+  font: italic 600 1.35rem var(--serif);
+  color: var(--red);
+}
+
+.pooja-card > p:not(.time) {
+  grid-column: 1;
+  grid-row: 2;
+  margin-top: 0.3rem;
+}
+
+.pooja-card .more {
+  grid-column: 1/-1;
+  grid-row: 3;
+}
+
+.pooja-card .link-btn {
+  grid-column: 2;
+  grid-row: 2;
+  justify-self: end;
+  align-self: start;
+  margin-top: 0.4rem;
+}
+
+.pooja-card:hover h3 {
+  color: var(--red);
+}
+
+.pooja-card h3 {
+  transition: color 0.3s;
+}
+
+/* ---------- Festivals (home rail + about grid) ---------- */
+.occasions {
+  background: var(--night);
+  overflow: hidden;
+  z-index: 1;
+}
+
+.section-rama {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  top: 100px;
+  left: -200px;
+}
+
+.rail-wrap {
+  position: relative;
+}
+
+.rail {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  --rail-pad: max(1.25rem, calc((100vw - 1180px) / 2));
+  padding: 0.5rem var(--rail-pad) 1.5rem;
+  scroll-padding-inline: var(--rail-pad);
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.rail::-webkit-scrollbar {
+  display: none;
+}
+
+.rail .fest {
+  flex: 0 0 min(80vw, 340px);
+  scroll-snap-align: start;
+}
+
+.fest {
+  --n: 16px;
+  position: relative;
+  display: block;
+  padding: 2rem 1.75rem 2.2rem;
+  text-decoration: none;
+  background: linear-gradient(160deg, #2f0d14, #1e090d);
+  border: 1px solid rgba(212, 162, 58, 0.35);
+  color: rgba(251, 243, 225, 0.85);
+  clip-path: polygon(
+    var(--n) 0,
+    calc(100% - var(--n)) 0,
+    100% var(--n),
+    100% calc(100% - var(--n)),
+    calc(100% - var(--n)) 100%,
+    var(--n) 100%,
+    0 calc(100% - var(--n)),
+    0 var(--n)
+  );
+  transition:
+    transform 0.5s var(--ease),
+    background 0.5s;
+}
+
+.fest::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--gold), transparent);
+}
+
+.fest:hover {
+  transform: translateY(-6px);
+  background: linear-gradient(160deg, #4a1019, #2a0c12);
+}
+
+.fest h3 {
+  color: var(--gold-l);
+  margin: 0.3rem 0 0.8rem;
+}
+
+.fest-date {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--gold);
+  font-size: 1.1rem;
+}
+
+.fest-more {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background: transparent;
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: var(--gold-l);
+  /* min-height: 240px; */
+}
+
+.rail-btns {
+  display: flex;
+  gap: 0.7rem;
+  justify-content: flex-end;
+}
+
+.rail-btns button {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 1px solid rgba(241, 212, 137, 0.5);
+  background: transparent;
+  color: var(--gold-l);
+  font-size: 1.6rem;
+  line-height: 1;
+  transition: 0.3s;
+}
+
+.rail-btns button:hover {
+  background: var(--gold);
+  color: #2a1305;
+}
+
+.fest-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 900px) {
+  .fest-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .fest-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rail {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+/* timings with faint photographic depth */
+#timings,
+#contact {
+  position: relative;
+  overflow: hidden;
+}
+
+#timings::before,
+#contact::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--stone) center/cover;
+  opacity: 0.07;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+#timings .container,
+#contact .container {
+  position: relative;
+}
+
+.timings {
+  margin: 0;
+  /* max-width: 760px; */
+  border: 1px solid var(--brass);
+  outline: 1px solid var(--line);
+  outline-offset: 7px;
+  background: rgba(255, 252, 243, 0.9);
+  position: relative;
+}
+
+.timings::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 18%;
+  bottom: 18%;
+  width: 1px;
+  background: var(--line);
+}
+
+.timings .sep {
+  display: none;
+}
+
+.timings > div:not(.sep) {
+  flex: 1;
+}
+
+.timings p {
+  font-weight: 600;
+  color: var(--maroon);
+}
+
+/* architecture: warm sandstone panel with arch niches */
+.arch-sec {
+  background: var(--sandstone);
+  color: #4a3629;
+  position: relative;
+}
+
+.arch-sec::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: var(--kasavu);
+}
+
+.arch-sec .h-scroll {
+  padding: 1rem 0 2rem;
+  gap: 2rem;
+  scrollbar-color: var(--brass) transparent;
+}
+
+.arch-sec figure {
+  flex: 0 0 min(270px, 72%);
+}
+
+.arch-sec figure:nth-child(even) {
+  margin-top: 3.5rem;
+}
+
+.arch-sec .img-wrap {
+  border: 1px solid var(--brass);
+  border-radius: 999px 999px 0 0;
+  padding: 7px;
+  background: #fffcf3;
+}
+
+.arch-sec .img-wrap img {
+  border-radius: 999px 999px 0 0;
+  aspect-ratio: 3/4;
+}
+
+.arch-sec figcaption {
+  text-align: left;
+  padding-top: 1rem;
+}
+
+/* visit / contact */
+.reach .card {
+  background: none;
+  border: 0;
+  border-top: 1px solid var(--brass);
+  outline: 0;
+  box-shadow: none;
+  padding: 1.2rem 0 0;
+}
+
+.map {
+  border: 1px solid var(--brass);
+  padding: 6px;
+  background: #fffcf3;
+  margin: 1.5rem 0;
+}
+
+.contact-list {
+  margin: 0;
+  max-width: 760px;
+  border: 1px solid var(--brass);
+  outline: 1px solid var(--line);
+  outline-offset: 7px;
+  background: rgba(255, 252, 243, 0.9);
+}
+
+/* gallery */
+.filters {
+  justify-content: flex-start;
+  gap: 0 1.8rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.filters button {
+  border: 0;
+  border-bottom: 2px solid transparent;
+  padding: 0.6rem 0.1rem;
+  font-size: 1.15rem;
+  margin-bottom: -1px;
+  transition:
+    color 0.3s,
+    border-color 0.3s;
+}
+
+.filters button.active,
+.filters button:hover {
+  background: none;
+  color: var(--red);
+  border-color: var(--brass);
+}
+
+.masonry {
+  column-gap: 1.4rem;
+}
+
+.masonry li {
+  margin-bottom: 1.4rem;
+}
+
+.masonry button {
+  background: #fffcf3;
+  padding: 8px;
+  border: 1px solid var(--line);
+  transition: border-color 0.4s;
+}
+
+.masonry button:hover {
+  border-color: var(--brass);
+}
+
+.masonry span {
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  background: linear-gradient(transparent, rgba(58, 35, 24, 0.8));
+  transform: translateY(8px);
+  transition:
+    opacity 0.4s,
+    transform 0.4s;
+}
+
+.masonry button:hover span,
+.masonry button:focus-visible span {
+  transform: none;
+}
+
+.lightbox {
+  background: rgba(42, 24, 16, 0.95);
+}
+
+.lightbox figure {
+  display: grid;
+  justify-items: center;
+}
+
+.lightbox img {
+  border: 1px solid var(--brass-l);
+  padding: 10px;
+  background: #fffcf3;
+}
+
+.lightbox figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.lightbox small {
+  font: 500 0.95rem var(--sans);
+  letter-spacing: 0.2em;
+  color: var(--brass-l);
+}
+
+.lb-btn {
+  background: transparent;
+  border-radius: 0;
+  border-color: rgba(216, 183, 101, 0.6);
+}
+
+/* footer: sandstone, same light family; maroon strip closes the page */
+.site-footer {
+  position: relative;
+  overflow: hidden;
+  background: var(--sandstone);
+  color: #4a3629;
+  padding-top: 4rem;
+}
+
+.site-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: var(--kasavu);
+}
+
+.site-footer::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -300px;
+  width: 640px;
+  height: 640px;
+  translate: -50%;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    rgba(176, 141, 60, 0.13) 0 3deg,
+    transparent 3deg 10deg
+  );
+  -webkit-mask-image: radial-gradient(circle, #000 20%, transparent 68%);
+  mask-image: radial-gradient(circle, #000 20%, transparent 68%);
+  pointer-events: none;
+}
+
+.site-footer .container {
+  position: relative;
+  z-index: 1;
+}
+
+.site-footer h2 {
+  color: var(--maroon-d);
+  font-size: 2.3rem;
+}
+
+.footer-sub {
+  font: italic 500 1.3rem var(--serif);
+  color: var(--red);
+}
+
+.footer-mantra {
+  color: var(--maroon);
+}
+
+.footer-grid {
+  grid-template-columns: 1.2fr 1fr;
+  gap: 3rem;
+  padding-bottom: 3rem;
+}
+
+.footer-grid li a {
+  display: inline-block;
+  padding: 0.35rem 0;
+  position: relative;
+}
+
+.footer-grid li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0.2rem;
+  height: 1px;
+  width: 100%;
+  background: var(--maroon);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s;
+}
+
+.footer-grid li a:hover {
+  color: var(--maroon);
+}
+
+.footer-grid li a:hover::after {
+  transform: scaleX(1);
+}
+
+.copyright {
+  position: relative;
+  z-index: 1;
+  background: var(--deep);
+  color: #ecd9a6;
+  border: 0;
+  max-width: none;
+  margin: 0;
+  padding: 1.1rem 1rem;
+}
+
+.copyright a:hover {
+  text-decoration: underline;
+}
+
+.preloader .lamp {
+  width: 104px;
+  height: 104px;
+  margin: 0 auto 1rem;
+  display: grid;
+  place-items: center;
+  font-size: 3.2rem;
+  border: 1px solid var(--brass);
+  border-radius: 50% 50% 6px 6px;
+  outline: 1px solid var(--line);
+  outline-offset: 6px;
+}
+
+/* responsive */
+@media (max-width: 900px) {
+  .deity-list,
+  .fest-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .deity-list > .deity-card:first-child {
+    grid-template-columns: 1fr;
+    row-gap: 1rem;
+  }
+
+  .deity-list > .deity-card:first-child .img-wrap {
+    grid-row: auto;
+    margin: 0 auto 1rem;
+  }
+
+  .deity-list > .deity-card:nth-child(n + 2) {
+    grid-column: 1;
+    margin-top: 0;
+  }
+
+  .fest-grid > .reveal:first-child {
+    grid-row: auto;
+  }
+
+  .heritage .split,
+  .theertham .split {
+    grid-template-columns: 1fr;
+  }
+
+  .heritage .split > .reveal:last-child {
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --hh: 88px;
+  }
+
+  .section {
+    padding: 3.8rem 0 4.4rem;
+  }
+
+  .section-heading {
+    margin-bottom: 2.2rem;
+  }
+
+  /* .hero::before {
+    inset: 10px;
+  }
+  .hero {
+    padding-bottom: 6rem;
+  } */
+  .eyebrow::before,
+  .eyebrow::after {
+    width: 24px;
+  }
+
+  .arch-sec figure:nth-child(even) {
+    margin-top: 1.5rem;
+  }
+
+  .timings::before {
+    display: none;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid ul {
+    text-align: left;
+  }
+
+  .copyright {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .heritage-strip {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+  }
+
+  .btn-row .btn {
+    display: block;
+    margin: 0.6rem auto;
+    width: min(290px, 100%);
+  }
+
+  .btn-row .btn-ghost {
+    width: auto;
+    display: inline-block;
+    margin-top: 1rem;
+  }
+
+  .pooja-card {
+    grid-template-columns: 1fr;
+  }
+
+  .pooja-card .time,
+  .pooja-card > p:not(.time),
+  .pooja-card .link-btn {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: start;
+  }
+
+  .fest-grid > .reveal:not(:first-child) .festival-card {
+    grid-template-columns: 96px 1fr;
+    gap: 1rem;
+  }
+
+  .masonry {
+    columns: 2;
+    column-gap: 0.7rem;
+  }
+
+  .masonry li {
+    margin-bottom: 0.7rem;
+  }
+
+  .masonry button {
+    padding: 5px;
+  }
+
+  .masonry span {
+    display: none;
+  }
+
+  .filters {
+    gap: 0 1.1rem;
+  }
+
+  .frames {
+    max-width: 340px;
+    margin: 0;
+  }
+
+  /* .hero::after {
+    height: 10px;
+    background-image: radial-gradient(
+      circle at 50% 100%,
+      var(--cream) 0 9px,
+      transparent 10px
+    );
+    background-size: 20px 10px;
+  } */
+  .contact-list {
+    outline-offset: 5px;
+  }
+
+  .back-top {
+    width: 42px;
+    height: 42px;
+  }
+
+  .heritage::before {
+    left: 120px;
+    top: -60px;
+  }
+}
+
+/* ===== Heritage visual: statue + rotating chakra (alignment fix) =====
+   Both PNGs are transparent, so: no background box, no padding, no forced
+   aspect ratio. A square stage holds the statue; the chakra is centred on
+   Rama's head inside the stage using percentages, so it scales on every screen. */
+.heritage .split {
+  align-items: center;
+}
+
+.heritage .split > .reveal:last-child {
+  padding-top: 0;
+}
+
+.heritage .heritage-visual {
+  position: relative;
+  isolation: isolate;
+  display: block;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 14% 0 0;
+  /* room above the figure so the chakra is never cropped */
+  overflow: visible;
+}
+
+.heritage .heritage-visual img {
+  background: none;
+  padding: 0;
+  aspect-ratio: auto;
+}
+
+.heritage .heritage-visual .rama-image {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  /* fade the cropped waistline into the page instead of a hard edge */
+  -webkit-mask-image: linear-gradient(to bottom, #000 84%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 84%, transparent 100%);
+  filter: drop-shadow(0 14px 18px rgba(74, 40, 20, 0.22));
+}
+
+.heritage .heritage-visual .rotating-chakra {
+  position: absolute;
+  z-index: 1;
+  left: 51%;
+  top: 25%;
+  width: 74%;
+  height: auto;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+  filter: drop-shadow(0 0 14px rgba(170, 110, 30, 0.22));
+  opacity: 0.95;
+}
+
+@media (max-width: 900px) {
+  .heritage .heritage-visual {
+    max-width: 420px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heritage .heritage-visual {
+    max-width: 340px;
+  }
+}
